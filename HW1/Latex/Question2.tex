@@ -1,0 +1,27 @@
+
+\subsection{Regression Results}
+\begin{table}[h]
+    \centering
+    \small
+    \input{HW1/LATEX/Attachments/Q2Reg.tex}
+    \caption{Regression Results}
+    \label{tab:my_label}
+\end{table}
+
+In model Total, since dummy variables for year are linearly correlated, one of them (\textit{77.yr}) does not have an estimation. Moreover, in model Between, since we first take average within each group, coefficient of year dummies do not make a sense (Because there is no variation between groups). Also, since industry during time does not change, just one of the 4 d357 time dummies, can be estimated. 
+Also, we can see that the estimates are different, in particular, the within-estimate of labor and R&D are higher than the other estimates. 
+
+\subsection{Hausman Test}
+
+The Hausman test is 59.15 ($\chi^2$ with 9 degrees of freedom) and is rejected with p-value $<$ 0.001. Therefore, the random effects specification is not valid.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{HW1/LATEX/Attachments/Q2_2.png}
+    \caption{Hausman Test}
+    \label{fig:my_label}
+\end{figure}
+
+\subsection{What we learn?}
+
+This suggests that the random effects specification is not valid, and there are systematic differences across firms that are related to input choices. In particular, the underestimation of the labor coefficient might imply that some companies have more efficient managers, so fewer workers are required — and knowing this, a company hires less. The underestimation of the R&D capital can similarly reflect that some companies are more efficient and have a higher return on R&D, therefore, they do not invest as much as other firms.

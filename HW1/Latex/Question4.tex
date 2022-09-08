@@ -1,0 +1,45 @@
+\subsection{Unbalanced and at least Two observations regressions}
+
+\begin{table}[h]
+\parbox{.45\linewidth}{
+    \centering
+    \small
+    \input{HW1/LATEX/Attachments/Q4RegResult1.tex}
+    \caption{Unbalanced Panel(All)}
+    \label{tab:my_label}
+    }
+    \quad
+    \parbox{.45\linewidth}{
+    \centering
+    \small
+    \input{HW1/LATEX/Attachments/Q4RegResult2.tex}
+    \caption{Firms with at least two observations}
+    \label{tab:my_label}
+    }
+\end{table}
+
+
+The coefficient of labor is higher when estimated on the whole sample compared to the balanced subpanel estimate, while the coefficient on capital is lower. These results indicate that the companies in the balanced subpanel (i.e., surviving for 15 years) are fundamentally different from the companies in the total sample, which confirms the insights from the descriptive statistics. One possibility is that shorter-living companies are more labor-intensive and do not have time to acquire much capital, which shifts the estimates toward a higher labor coefficient and a lower capital coefficient when they are included in the estimation.\\
+
+\subsection{Probit}
+
+\begin{table}[h]
+\parbox{.45\linewidth}{
+    \centering
+    \small
+    \input{HW1/LATEX/Attachments/Q4RegResult3.tex}
+    \caption{Regression Results after using probit results}
+    \label{tab:my_label}
+}
+\quad
+\parbox{.45\linewidth}{
+    \centering
+    \small
+    \input{HW1/LATEX/Attachments/Q4RegResult4.tex}
+    \caption{Regression Results for Difference Model}
+    \label{tab:my_label}
+    }
+\end{table}
+
+\subsection{What we have learned?}
+Controlling for the inverse Mills ratio changes the estimates toward the estimates on the balanced subpanel. The fact that the estimates change means that the entry and exit were not random, namely, there is a variable that affects both the output and the exit decision. 

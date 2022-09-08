@@ -152,7 +152,7 @@ gen d73 = (yr==73)
 gen d78 = (yr==78)
 gen d83 = (yr==83)
 gen d88 = (yr==88)
-
+preserve
 
 xtset index yr, delta(5)
 
@@ -183,24 +183,7 @@ esttab T_total T_first using Q4RegResult2.tex, replace mtitle  rename(D.lemp lem
 
 
 ** Doing Probit
-clear all
-cls
-cd "/Users/mahdishahrabi/Library/Mobile Documents/com~apple~CloudDocs/PhD/Year 2 - 2022/Term 3/IO/UPenn_IO_Fall_2022/HW1"
-
-* Reading Data
-use "/Users/mahdishahrabi/Library/Mobile Documents/com~apple~CloudDocs/PhD/Year 2 - 2022/Term 3/IO/UPenn_IO_Fall_2022/HW1/GMdata.dta"
-sort index
-by index: gen cnt = (_N)
-
-* Sector and Time Dummy
-gen d357_73 = (sic3==357) & (yr==73)
-gen d357_78 = (sic3==357) & (yr==78)
-gen d357_83 = (sic3==357) & (yr==83)
-gen d357_88 = (sic3==357) & (yr==88)
-gen d73 = (yr==73)
-gen d78 = (yr==78)
-gen d83 = (yr==83)
-gen d88 = (yr==88)
+restore
 
 
 xtset index yr, delta(5)
