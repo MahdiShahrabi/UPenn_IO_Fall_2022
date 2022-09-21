@@ -115,14 +115,13 @@ eststo h, title("h^")
 ****    (b)    ****
 restore
 sort index yr
-by index: gen next_period = yr[_n+1]
-replace next_period = 0 if missing(next_period[_n])
-replace next_period = 1 if next_period[_n]>0
-replace next_period = . if yr[_n]==88
+by index: gen yr_dif = yr[_n+1] - yr[_n]
+gen np = (yr_dif ==5)
+replace np = . if yr[_n]==88
 
 
 * Probit
-probit next_period l1_ldnpt l1_ldrst l1_ldinv
+probit np ldnpt ldrst ldinv
 predict P_hat
 gen l1_P_hat = L1.P_hat
 preserve
