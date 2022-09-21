@@ -1,0 +1,35 @@
+\subsection{(a) & (b) & (c)}
+
+I estimate the equation in problem 1 (a) by including only second lags (specification 1) and by including second and third lags (specification 2). Specification 3 is autocorrelated transmitted shocks without fixed effects (the selected $\rho=0.758$) and specification 4 (the selected $\rho=1.159$) is autocorrelated transmitted shocks with fixed effects.
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.15]{HW2/Attachments/Q1b.png}
+    \caption{Moment Condition vs $\rho$ for (b)}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.15]{HW2/Attachments/Q1c.png}
+    \caption{Moment Condition vs $\rho$ for (c)}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{table}[h!]
+    \centering
+    \footnotesize{
+    \input{HW2/Attachments/Q1.tex}
+    }
+    \caption{Question 1}
+    \label{tab:my_label}
+\end{table}
+
+\subsection{(d)}
+
+As we can see from Table 1, specifications (1) and (2) do not make much sense: in specification (1), the coefficient on R\&D capital is negative, while in specification (2) the coefficient on capital is negative. The first stage of both these regressions suggests that the instruments might be weak: the F-statistic of the first stage is around 10 in specification (1) and much lower than 10 in specification (2).
+
+The results of specification (3) seem much more reasonable compared to specifications (1) and (2), suggesting that the assumption of no autocorrelation in the transmitted shock is restrictive. The estimated autocorrelation is $\rho=0.758$, which is a high coefficient, so ignoring it results in a seriously biased estimates.
+
+The results of specification (4) are also not reasonable: they suggest that nothing is significant. Including fixed effects forces us to (i) use only a balanced panel for estimation, reducing the sample size threefold, and (ii) use higher-order lags for estimation which makes them weaker instruments. That is, on this sample, accounting for fixed effects creates more problems than it solves.
