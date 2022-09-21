@@ -41,20 +41,16 @@ gen l1_ldrst = L1.ldrst
 gen l2_ldrst = L2.ldrst
 gen l3_ldrst = L3.ldrst
 
-gen l1_ldinv = L1.ldinv
+gen l1_ldsal = L1.ldsal
+gen l2_ldsal = L2.ldsal
+gen l3_ldsal = L3.ldsal
 
-* Making Diff Values
-gen d1_ldsal = D1.ldsal
-gen d1_lemp = D1.lemp
-gen d1_ldnpt = D1.ldnpt
-gen d1_ldrst = D1.ldrst
+gen l1_ldinv = L1.ldinv
 
 ************************  	Question 1    ******************************
 
 * Making panel balances
 preserve
-keep if cnt==4
-sort index yr
 
 ****    (a)    ****
 
@@ -66,8 +62,29 @@ eststo IV_2L, title("IV Regressions with 2L")
 ivregress gmm  D1.ldsal d73 d78 d83 d88 d357_73 d357_78 d357_83 d357_88 (D1.(lemp ldnpt ldrst) = l2_lemp l2_ldrst l2_ldnpt l3_lemp l3_ldrst l3_ldnpt), first
 eststo IV_3L, title("IV Regressions with 3L")
 
-esttab IV_2L IV_3L, replace mtitle 
+****    (b)    ****
+gen lemp_rho = lemp - 0.785*l1_lemp
+gen ldnpt_rho = ldnpt - 0.785*l1_ldnpt
+gen ldrst_rho = ldrst - 0.785*l1_ldrst
+gen ldsal_rho = ldsal - 0.785*l1_ldsal
 
+
+* Regressions with 2 lagged variables as IV
+ivregress gmm ldsal_rho d73 d78 d83 d88 d357_73 d357_78 d357_83 d357_88 (lemp_rho ldnpt_rho ldrst_rho = l2_lemp l2_ldrst l2_ldnpt), first
+eststo IV_b, title("AR Shocks")
+
+****    (c)    ****
+gen lemp_rho2 = (lemp - 1.159*l1_lemp) - (l1_lemp - 1.159*l2_lemp)
+gen ldnpt_rho2 = (ldnpt - 1.159*l1_ldnpt) - (l1_ldnpt - 1.159*l2_ldnpt)
+gen ldrst_rho2 = (ldrst - 1.159*l1_ldrst) - (l1_ldrst - 1.159*l2_ldrst)
+gen ldsal_rho2 = (ldsal - 1.159*l1_ldsal) - (l1_ldsal - 1.159*l2_ldsal)
+
+
+* Regressions with 2 lagged variables as IV
+ivregress gmm ldsal_rho2 d73 d78 d83 d88 d357_73 d357_78 d357_83 d357_88 (lemp_rho2 ldnpt_rho2 ldrst_rho2 = l3_lemp l3_ldrst l3_ldnpt), first
+eststo IV_c, title("AR Shocks+FE")
+
+esttab IV_2L IV_3L IV_b IV_c using Q1.tex, replace mtitle rename(D.lemp lemp D.ldnpt ldnpt D.ldrst ldrst lemp_rho lemp lemp_rho2 lemp ldnpt_rho ldnpt ldnpt_rho2 ldnpt ldrst_rho ldrst ldrst_rho2 ldrst)
 
 ************************  	Question 2    ******************************
 restore
@@ -78,7 +95,7 @@ restore
 
 reg ldsal lemp d73 d78 d83 d88 d357_73 d357_78 d357_83 d357_88 c.(ldnpt ldrst ldinv)##c.(ldnpt ldrst ldinv)
 eststo q2_a_i, title("lemp and dummies")
-esttab q2_a_i, mtitle
+esttab q2_a_i using Q2_i.tex,replace mtitle
 
 ****    (ii)
 matrix b = e(b)
@@ -92,7 +109,7 @@ drop if missing(l1_ldnpt)
 
 * NLLS
 nl (pi_hat={beta2}*ldnpt + {beta3}*ldrst + {b1}*(l1_pi_hat-{beta2}*l1_ldnpt-{beta3}*l1_ldrst) + {b2}*(l1_pi_hat-{beta2}*l1_ldnpt-{beta3}*l1_ldrst)^2 )
-eststo q2_a_ii, title("h^")
+eststo h, title("h^")
 
 
 ****    (b)    ****
@@ -114,15 +131,15 @@ preserve
 * NLLS: P_hat
 drop if missing(l1_P_hat)
 nl (pi_hat={beta2}*ldnpt + {beta3}*ldrst + {b1}*(l1_P_hat) + {b2}*(l1_P_hat^2))
-eststo q2_b, title("P^")
+eststo P, title("P^")
 
 ****    (c)    ****
 
 
 nl (pi_hat={beta2}*ldnpt + {beta3}*ldrst + {b1}*(l1_P_hat) + {b2}*(l1_P_hat^2)+{b3}*(l1_pi_hat-{beta2}*l1_ldnpt-{beta3}*l1_ldrst) + {b4}*(l1_pi_hat-{beta2}*l1_ldnpt-{beta3}*l1_ldrst)^2)
 
-eststo q2_c, title("h^ & P^")
+eststo hp, title("h^ & P^")
 
-esttab q2_a_ii q2_b q2_c, mtitle
+esttab h P hp using Q2.tex, replace mtitle
 
 
