@@ -28,8 +28,8 @@ I estimate the equation in problem 1 (a) by including only second lags (specific
 
 \subsection{(d)}
 
-As we can see from Table 1, specifications (1) and (2) do not make much sense: in specification (1), the coefficient on R\&D capital is negative, while in specification (2) the coefficient on capital is negative. The first stage of both these regressions suggests that the instruments might be weak: the F-statistic of the first stage is around 10 in specification (1) and much lower than 10 in specification (2).
+In Table (1), we can the see results for different settings. In  specifications (1) and (2) the coefficient on R\&D capital and the coefficient on capital is negative, which does not make much of sense. Checking the first stage regression F-statistic, we see that the 2-lagged and 3-lagged inputs are not very good IVs.
 
-The results of specification (3) seem much more reasonable compared to specifications (1) and (2), suggesting that the assumption of no autocorrelation in the transmitted shock is restrictive. The estimated autocorrelation is $\rho=0.758$, which is a high coefficient, so ignoring it results in a seriously biased estimates.
+Moreover, the results of specification (3) seem much more reasonable suggesting that the assumption of no autocorrelation in the transmitted shock is important. The estimated autocorrelation is $\rho=0.758$, which is a high coefficient, so ignoring it results in a seriously biased estimates.
 
-The results of specification (4) are also not reasonable: they suggest that nothing is significant. Including fixed effects forces us to (i) use only a balanced panel for estimation, reducing the sample size threefold, and (ii) use higher-order lags for estimation which makes them weaker instruments. That is, on this sample, accounting for fixed effects creates more problems than it solves.
+Also, specification (4) suggest that nothing is significant. We should notice that including fixed effects makes us use only balanced panel for estimation, reducing the sample size threefold. Moreover, we have to use higher-order lags for estimation which makes them weaker instruments. Therefore, in this case, having firm fixed effects creates more problems and makes the inference harder.
