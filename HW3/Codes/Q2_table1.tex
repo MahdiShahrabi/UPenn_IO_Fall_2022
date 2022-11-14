@@ -1,0 +1,25 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+            &\multicolumn{1}{c}{OLS}&\multicolumn{1}{c}{Hausman IV}&\multicolumn{1}{c}{BLP IV}&\multicolumn{1}{c}{Both IV}\\
+\hline
+price       &      -2.972\sym{***}&      -3.536\sym{***}&      -1.163         &      -3.520\sym{***}\\
+            &    (-24.42)         &    (-25.40)         &     (-0.71)         &    (-25.30)         \\
+[1em]
+calories    &      -1.697\sym{***}&      -1.662\sym{***}&      -1.800\sym{***}&      -1.662\sym{***}\\
+            &     (-3.69)         &     (-3.44)         &     (-3.58)         &     (-3.44)         \\
+[1em]
+organic     &       1.102\sym{***}&       1.471\sym{***}&      -0.106         &       1.460\sym{***}\\
+            &      (5.37)         &      (6.75)         &     (-0.10)         &      (6.71)         \\
+[1em]
+\_cons      &       4.850\sym{***}&       5.542\sym{***}&       2.639         &       5.521\sym{***}\\
+            &      (5.19)         &      (5.62)         &      (1.19)         &      (5.60)         \\
+\hline
+\(N\)       &        1431         &        1315         &        1431         &        1315         \\
+\hline\hline
+\multicolumn{5}{l}{\footnotesize \textit{t} statistics in parentheses}\\
+\multicolumn{5}{l}{\footnotesize \sym{*} \(p<0.05\), \sym{**} \(p<0.01\), \sym{***} \(p<0.001\)}\\
+\end{tabular}
+}
